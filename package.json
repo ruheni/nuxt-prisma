@@ -6,9 +6,7 @@
     "dev": "node server.js",
     "build": "nuxt build",
     "start": "NODE_ENV=production node server.js",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@prisma/client": "^2.12.1",
