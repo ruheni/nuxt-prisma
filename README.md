@@ -1,6 +1,6 @@
 # Prisma-Nuxt Example
 
-This example shows a REST API with [Nuxt](https://nuxtjs.org/)** using [Vue](https://vuejs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows a **REST API with [Nuxt](https://nuxtjs.org/)** using [Vue](https://vuejs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 ## Install Dependencies
 
 ```bash
@@ -14,7 +14,7 @@ Start the development server using the following command
 yarn dev
 ```
 
-The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
+The server is now running on `http://localhost:3000`. You can send the API requests implemented in `server.js`, e.g. [`http://localhost:3000/api/feed`](http://localhost:3000/api/feed).
 ## Using the REST API
 
 You can access the REST API of the server using the following endpoints:
