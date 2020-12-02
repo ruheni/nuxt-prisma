@@ -18,9 +18,25 @@ export default {
     }
   },
   methods: {
-    signup: function (e) {
+    signup: async function (e) {
       e.preventDefault()
-      console.log(this.name)
+
+      try {
+        const body = {
+          name: this.name,
+          email: this.email,
+        }
+
+        const res = await fetch(`http://localhost:3000/api/user`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        })
+        const data = await res.json()
+        this.$route.push('/')
+      } catch (error) {
+        console.error(error)
+      }
     },
   },
 }

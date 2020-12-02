@@ -20,13 +20,14 @@ export default {
     return { title: '', authorEmail: '', content: '' }
   },
   methods: {
-    createDraft: async (e) => {
+    createDraft: async function (e) {
       e.preventDefault()
       const body = {
         title: this.title,
         authorEmail: this.authorEmail,
         content: this.content,
       }
+
       try {
         const res = await fetch(`http://localhost:3000/api/post`, {
           method: 'POST',
@@ -34,7 +35,7 @@ export default {
           body: JSON.stringify(body),
         })
         const data = await res.json()
-        // await Router.push('/drafts')
+        await this.$route.push({ name: 'drafts' })
       } catch (error) {
         console.error(error)
       }
