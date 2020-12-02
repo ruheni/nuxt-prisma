@@ -23,15 +23,12 @@ export default {
       feed: [],
     }
   },
-  activated() {
-    if (this.$fetchState.timestamp <= Date.now() - 30000) {
-      this.$fetch()
-    }
-  },
   async fetch() {
-    this.feed = await this.$http
-      .$get('http://localhost:3000/api/feed')
-      .then((res) => res.json())
+    const feed = await fetch(`http://localhost:3000/api/feed`).then((res) =>
+      res.json()
+    )
+
+    this.feed = this.feed.concat(feed)
   },
 }
 </script>

@@ -2,20 +2,34 @@
   <div class="page">
     <h1>Drafts</h1>
     <main>
-      <!-- <div v-for="post of drafts" :key="post.id" class="post">
-        <Post post="post" />
-      </div> -->
+      <p v-if="$fetchState.pending">
+        <span class="loading"></span>
+      </p>
+      <p v-else-if="$fetchState.error">Error while fetching drafts 🤬</p>
+      <ul v-else>
+        <li v-for="post in drafts" :key="post.id">
+          <NuxtLink :to="{ name: 'drafts-slug', params: { slug: post.slug } }">
+            {{ post.title }}
+          </NuxtLink>
+        </li>
+      </ul>
     </main>
   </div>
 </template>
 <script>
-import Post from '../components/Post'
 export default {
-  components: {
-    Post,
-  },
+  components: {},
   data() {
-    drafts: []
+    return {
+      drafts: [],
+    }
+  },
+  async fetch() {
+    const drafts = await fetch(`http://localhost:3000/api/drafts`).then((res) =>
+      res.json()
+    )
+
+    this.drafts = this.drafts.concat(drafts)
   },
 }
 </script>

@@ -20,17 +20,20 @@ export default {
     return { title: '', authorEmail: '', content: '' }
   },
   methods: {
-    createDraft: (e) => {
+    createDraft: async (e) => {
       e.preventDefault()
-      const body =  this.title
-      console.log({ body })
+      const body = {
+        title: this.title,
+        authorEmail: this.authorEmail,
+        content: this.content,
+      }
       try {
-        // const res = await fetch(`http://localhost:3001/post`, {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(body),
-        // })
-        // const data = await res.json()
+        const res = await fetch(`http://localhost:3000/api/post`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        })
+        const data = await res.json()
         // await Router.push('/drafts')
       } catch (error) {
         console.error(error)

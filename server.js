@@ -8,6 +8,14 @@ const prisma = new PrismaClient()
 // Body parser, to access `req.body`
 app.use(bodyParser.json())
 
+app.get('/api/drafts', async (req, res) => {
+  const posts = await prisma.post.findMany({
+    where: { published: false },
+    include: { author: true }
+  })
+  res.json(posts)
+})
+
 app.post(`/api/user`, async (req, res) => {
   const result = await prisma.user.create({
     data: {
