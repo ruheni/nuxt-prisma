@@ -1,0 +1,35 @@
+<template>
+  <div class="page">
+    <h1>Drafts</h1>
+    <main>
+      <!-- <div v-for="post of drafts" :key="post.id" class="post">
+        <Post post="post" />
+      </div> -->
+    </main>
+  </div>
+</template>
+<script>
+import Post from '../components/Post'
+export default {
+  components: {
+    Post,
+  },
+  data() {
+    drafts: []
+  },
+}
+</script>
+<style scoped>
+.post {
+  background: white;
+  transition: box-shadow 0.1s ease-in;
+}
+
+.post:hover {
+  box-shadow: 1px 1px 3px #aaa;
+}
+
+.post + .post {
+  margin-top: 2rem;
+}
+</style>

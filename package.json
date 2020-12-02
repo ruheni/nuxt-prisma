@@ -1,5 +1,5 @@
 {
-  "name": "prisma-example",
+  "name": "nuxt-prisma",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxt/http": "^0.6.0",
     "@prisma/client": "^2.12.1",
     "body-parser": "^1.19.0",
     "core-js": "^3.6.5",

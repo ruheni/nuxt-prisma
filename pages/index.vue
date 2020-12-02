@@ -1,63 +1,53 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">prisma-example</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="page">
+    <h1>My Blog</h1>
+    <main></main>
+    <p v-if="$fetchState.pending">
+      <span class="loading"></span>
+    </p>
+    <p v-else-if="$fetchState.error">Error while fetching feed 🤬</p>
+    <ul v-else>
+      <li v-for="post in feed" :key="post.id">
+        <NuxtLink :to="{ name: 'feed-slug', params: { slug: post.slug } }">
+          {{ post.title }}
+        </NuxtLink>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      feed: [],
+    }
+  },
+  activated() {
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch()
+    }
+  },
+  async fetch() {
+    this.feed = await this.$http
+      .$get('http://localhost:3000/api/feed')
+      .then((res) => res.json())
+  },
+}
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.post {
+  background: white;
+  transition: box-shadow 0.1s ease-in;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.post:hover {
+  box-shadow: 1px 1px 3px #aaa;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.post,
+.post {
+  margin-top: 2rem;
 }
 </style>
