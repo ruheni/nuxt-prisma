@@ -33,7 +33,7 @@ export default {
           body: JSON.stringify(body),
         })
         const data = await res.json()
-        this.$route.push('/')
+        this.$route.push({ path: '/' })
       } catch (error) {
         console.error(error)
       }

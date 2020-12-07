@@ -65,6 +65,7 @@ app.get(`/api/post/:id`, async (req, res) => {
     where: {
       id: parseInt(id),
     },
+    include: { author: true }
   })
   res.json(post)
 })

@@ -1,23 +1,29 @@
 <template>
   <div class="page">
     <h1>My Blog</h1>
-    <main></main>
-    <p v-if="$fetchState.pending">
-      <span class="loading"></span>
-    </p>
-    <p v-else-if="$fetchState.error">Error while fetching feed 🤬</p>
-    <ul v-else>
-      <li v-for="post in feed" :key="post.id">
-        <NuxtLink :to="{ name: 'feed-slug', params: { slug: post.slug } }">
-          {{ post.title }}
-        </NuxtLink>
-      </li>
-    </ul>
+    <main>
+      <p v-if="$fetchState.pending">
+        <span class="loading"></span>
+      </p>
+      <p v-else-if="$fetchState.error">Error while fetching feed 🤬</p>
+      <ul v-else>
+        <li v-for="post in feed" :key="post.id">
+          <!-- <Post :post="feed" /> -->
+          <NuxtLink :to="`/p/${post.id}`">
+            {{ post.title }}
+          </NuxtLink>
+        </li>
+      </ul>
+    </main>
   </div>
 </template>
 
 <script>
+import Post from '@/components/Post'
 export default {
+  components: {
+    Post,
+  },
   data() {
     return {
       feed: [],
@@ -29,6 +35,7 @@ export default {
     )
 
     this.feed = this.feed.concat(feed)
+    console.log(this.feed)
   },
 }
 </script>

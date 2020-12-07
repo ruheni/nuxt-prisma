@@ -1,14 +1,16 @@
 <template>
   <div>
-    <NuxtLink :to="`/p/${post.id}`">
-      <h2>{{ post.title }}</h2>
-      <small>By {{ authorName }}</small>
-      <p v-html="post.content"></p>
-    </NuxtLink>
+    <h2>{{ post.title }}</h2>
+    <small>By {{ authorName }}</small>
+    <p v-html="post.content"></p>
   </div>
 </template>
 <script>
 export default {
+  name: 'Post',
+  data() {
+    return { post: {} }
+  },
   props: {
     post: {
       id: Number,
@@ -23,7 +25,6 @@ export default {
   computed: {
     authorName: post.author ? post.author.name : 'Unknown author',
   },
-  name: 'Post',
 }
 </script>
 <style scoped>
