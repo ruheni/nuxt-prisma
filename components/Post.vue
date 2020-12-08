@@ -1,7 +1,8 @@
 <template>
-  <div @click="this.$router.push(`/p/${post.id}`)">
+  <div @click="navigate(post)">
     <h2>{{ post.title }}</h2>
-    <small>By {{ authorName }}</small>
+    <small v-if="post.author">By {{ post.author.name }}</small>
+    <small v-else>By Unknown author</small>
     <p v-html="post.content"></p>
   </div>
 </template>
@@ -14,8 +15,10 @@ export default {
       default: [],
     },
   },
-  computed: {
-    authorName: post.author ? post.author.name : 'Unknown author',
+  methods: {
+    navigate: function (post) {
+      this.$router.push(`/p/${post.id}`)
+    },
   },
 }
 </script>

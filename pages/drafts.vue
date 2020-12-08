@@ -6,19 +6,17 @@
         <span class="loading"></span>
       </p>
       <p v-else-if="$fetchState.error">Error while fetching drafts 🤬</p>
-      <ul v-else>
-        <li v-for="post in drafts" :key="post.id">
-          <NuxtLink :to="`/p/${post.id}`">
-            {{ post.title }}
-          </NuxtLink>
-        </li>
-      </ul>
+      <div v-else>
+        <Post class="post" v-for="post in drafts" :key="post.id" :post="post" />
+      </div>
     </main>
   </div>
 </template>
-<script>  
+<script>
+import Post from '@/components/Post'
+
 export default {
-  components: {},
+  components: { Post },
   data() {
     return {
       drafts: [],
