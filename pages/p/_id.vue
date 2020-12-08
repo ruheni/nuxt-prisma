@@ -9,8 +9,10 @@
       <p v-if="article.author">By {{ article.author.name }}</p>
       <p v-else>Unknown author</p>
       <div v-html="article.content"></div>
-      <button @click="publish" v-if="!article.published">Publish</button>
-      <button @click="destroy">Delete</button>
+      <button @click="publish(article.id)" v-if="!article.published">
+        Publish
+      </button>
+      <button @click="destroy(article.id)">Delete</button>
     </main>
   </div>
 </template>
@@ -28,8 +30,20 @@ export default {
     this.article = article
   },
   methods: {
-    destroy: async function () {},
-    publish: async function () {},
+    destroy: async function (id) {
+      const res = await fetch(`http://localhost:3000/api/post/${id}`, {
+        method: 'DELETE',
+      })
+      const data = await res.json()
+      this.$router.push('/')
+    },
+    publish: async function (id) {
+      const res = await fetch(`http://localhost:3000/api/publish/${id}`, {
+        method: 'PUT',
+      })  
+      const data = await res.json()
+      this.$router.push('/')
+    },
   },
 }
 </script>

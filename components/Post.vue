@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="this.$router.push(`/p/${post.id}`)">
     <h2>{{ post.title }}</h2>
     <small>By {{ authorName }}</small>
     <p v-html="post.content"></p>
@@ -8,18 +8,10 @@
 <script>
 export default {
   name: 'Post',
-  data() {
-    return { post: {} }
-  },
   props: {
     post: {
-      id: Number,
-      title: String,
-      author: {
-        name: String,
-      },
-      content: String,
-      published: Boolean,
+      type: Object,
+      default: [],
     },
   },
   computed: {

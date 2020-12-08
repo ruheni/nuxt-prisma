@@ -8,7 +8,7 @@
       <p v-else-if="$fetchState.error">Error while fetching drafts 🤬</p>
       <ul v-else>
         <li v-for="post in drafts" :key="post.id">
-          <NuxtLink :to="{ name: 'drafts-slug', params: { slug: post.slug } }">
+          <NuxtLink :to="`/p/${post.id}`">
             {{ post.title }}
           </NuxtLink>
         </li>
@@ -16,7 +16,7 @@
     </main>
   </div>
 </template>
-<script>
+<script>  
 export default {
   components: {},
   data() {
@@ -28,8 +28,7 @@ export default {
     const drafts = await fetch(`http://localhost:3000/api/drafts`).then((res) =>
       res.json()
     )
-
-    this.drafts = this.drafts.concat(drafts)
+    this.drafts = drafts
   },
 }
 </script>

@@ -35,7 +35,7 @@ export default {
           body: JSON.stringify(body),
         })
         const data = await res.json()
-        await this.$route.push({ name: 'drafts' })
+        await this.$router.push({ name: 'drafts' })
       } catch (error) {
         console.error(error)
       }

@@ -5,15 +5,10 @@
       <p v-if="$fetchState.pending">
         <span class="loading"></span>
       </p>
-      <p v-else-if="$fetchState.error">Error while fetching feed 🤬</p>
-      <ul v-else>
-        <li v-for="post in feed" :key="post.id">
-          <!-- <Post :post="feed" /> -->
-          <NuxtLink :to="`/p/${post.id}`">
-            {{ post.title }}
-          </NuxtLink>
-        </li>
-      </ul>
+      <p v-else-if="$fetchState.error">Error while fetching feed 💔</p>
+      <div v-else>
+        <Post class="post" v-for="post in feed" :key="post.id" :post="post" />
+      </div>
     </main>
   </div>
 </template>
@@ -21,9 +16,7 @@
 <script>
 import Post from '@/components/Post'
 export default {
-  components: {
-    Post,
-  },
+  components: { Post },
   data() {
     return {
       feed: [],
@@ -33,9 +26,7 @@ export default {
     const feed = await fetch(`http://localhost:3000/api/feed`).then((res) =>
       res.json()
     )
-
-    this.feed = this.feed.concat(feed)
-    console.log(this.feed)
+    this.feed = feed
   },
 }
 </script>
