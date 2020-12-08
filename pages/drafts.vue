@@ -5,7 +5,7 @@
       <p v-if="$fetchState.pending">
         <span class="loading"></span>
       </p>
-      <p v-else-if="$fetchState.error">Error while fetching drafts 🤬</p>
+      <p v-else-if="$fetchState.error">Error while fetching drafts 💔</p>
       <div v-else>
         <Post class="post" v-for="post in drafts" :key="post.id" :post="post" />
       </div>

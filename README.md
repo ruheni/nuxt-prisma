@@ -44,3 +44,6 @@ You can access the REST API of the server using the following endpoints:
 ### `DELETE`
 
 - `/api/post/:id`: Delete a post by its `id`
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-auth
+
+https://github.com/prisma/prisma-examples/archive/latest.zip

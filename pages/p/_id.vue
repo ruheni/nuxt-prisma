@@ -3,7 +3,7 @@
     <p v-if="$fetchState.pending">
       <span class="loading"></span>
     </p>
-    <p v-else-if="$fetchState.error">Error while fetching feed 🤬</p>
+    <p v-else-if="$fetchState.error">Error while fetching feed 💔</p>
     <main v-else>
       <h2>{{ article.title }}</h2>
       <p v-if="article.author">By {{ article.author.name }}</p>
